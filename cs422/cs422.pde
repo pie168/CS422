@@ -384,7 +384,8 @@ void countDownTimer() {
   if(timerSec <= 0 && timerMin > 0 && timerOn){
 
       sec = 59;
-      timerMin--;
+      //timerMin--;
+      mins--;
       reset = millis()/1000;
   }
   
