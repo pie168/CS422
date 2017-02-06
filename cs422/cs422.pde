@@ -134,16 +134,17 @@ void setup(){
   unmute.loadPixels();
   lock.loadPixels();
   unlock.loadPixels();
+
+}
+
+void draw(){
   
   incognito.resize(70,70);
   mute.resize(70,70);
   unmute.resize(70,70);
   lock.resize(70,70);
   unlock.resize(70,70);
-
-}
-
-void draw(){
+  
   
   if(invis) {
     
@@ -330,7 +331,7 @@ void draw(){
       }
     }
     else{
-      println("OFF");
+      
     }
   }
 }
@@ -338,10 +339,10 @@ void draw(){
 void setString() {
 
   String strSec = str(sec1) + str(sec2);
-  sec = Integer.parseInt(strSec);
+  sec = parseInt(strSec, 10);
   
   String strTemp = str(hundreds) + str(tens) + str(ones);
-  currTemp = Integer.parseInt(strTemp);
+  currTemp = parseInt(strTemp, 10);
   
 }
 
@@ -368,10 +369,10 @@ void resetMode() {
 void convert() {
 
   if(celsius) {
-      currTemp = (((currTemp-32)*5)/9);
+      currTemp = floor(((currTemp-32)*5)/9);
     }
     else {
-      currTemp = ((currTemp * 9) / 5) + 32;
+      currTemp = floor(((currTemp * 9) / 5) + 32);
     }
   
 }
@@ -434,9 +435,11 @@ void countDownTimer() {
   }
   else
   {
+    /*
     text("ERROR", 400, 620);
     println("SEC: " + sec);
     println("MIN: " + timerMin);
+    */
   }
 
 }
@@ -521,7 +524,7 @@ void mousePressed() {
       
   }
   else if((mouseX > tempX) && (mouseX < tempX + buttonWidth) && (mouseY > tempY) && (mouseY < tempY + buttonHeight)) {
-    println("TEMP");
+    //println("TEMP");
     if(lockScreen) {
     
     }
@@ -535,7 +538,7 @@ void mousePressed() {
   
   }
   else if((mouseX > timerX) && (mouseX < timerX + buttonWidth) && (mouseY > timerY) && (mouseY < timerY + buttonHeight)) {
-    println("TIMER");
+    //println("TIMER");
     if(lockScreen) {
     
     }
@@ -660,7 +663,7 @@ void mousePressed() {
   //START
   else if((mouseX > startX) && (mouseX < startX + buttonWidth) && (mouseY > startY) && (mouseY < startY + buttonHeight)) {
   
-    println("START");
+    //println("START");
     resetMode();
     background(192,192,192);
     timerOn = true;
@@ -718,21 +721,21 @@ void mousePressed() {
     burnt = true;
   }
   else if((mouseX > 1100) && (mouseX < 1100 + buttonWidth) && (mouseY > 700) && (mouseY < 700 + buttonHeight)) {
-    println("TEMP");
+    //println("TEMP");
     if(celsius) {
-      currTemp = (((currTemp-32)*5)/9);
+      currTemp = floor((((currTemp-32)*5)/9));
       celsius = false;
     }
     else {
       celsius = true;
-      currTemp = ((currTemp * 9) / 5) + 32;
+      currTemp = floor(((currTemp * 9) / 5) + 32);
     }
     background(192,192,192);
     
   }
   //Lock
   else if((mouseX > 1080) && (mouseX < 1080 + 70) && (mouseY > 20) && (mouseY < 20 + 70)) {
-    println("LOCK");
+    //println("LOCK");
     if(lockScreen) {
       lockScreen = false;    
     }
